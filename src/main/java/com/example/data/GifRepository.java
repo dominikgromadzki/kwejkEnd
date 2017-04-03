@@ -19,6 +19,11 @@ public class GifRepository {
             new Gif("cowboy-coder", "Grace Hopper", false),
             new Gif("infinite-andrew", "Marissa Mayer", true)
     );
+
+    public List<Gif> getAllGifs() {
+        return ALL_GIFS;
+    }
+
     public Gif findByName(String name){ for (Gif gif : ALL_GIFS){
         if ( gif.getName().equals(name)){ return gif;
         }
@@ -26,5 +31,5 @@ public class GifRepository {
         return null; }
 
 
-    
+
 }

@@ -22,26 +22,15 @@ public class GifController {
     @Autowired
     private GifRepository gifRepository;
 
-    @RequestMapping("/")
-    public String listGifts(ModelMap modelMap) {
-        List<Gif> allGifs = gifRepository.getAllGifs(); modelMap.put("gifs",allGifs);
-        return "home";
-    }
-
-    @RequestMapping("/gif/{name}")
-    public String gifDetails(@PathVariable String name, ModelMap modelMap){
-        Gif gif = gifRepository.findByName(name); modelMap.put("gif",gif);
-        return "gif-details";
-    }
-
     @GetMapping("/")
-    public String listGifs(){
+    public String listGifs(ModelMap modelMap){
+        modelMap.addAttribute("gifs", gifRepository.getAllGifs());
         return "home";
     }
-
-    @RequestMapping("/gif")
+    @GetMapping("/gif")
     public String gifDetails(ModelMap modelMap){
-        Gif gif = new Gif("compiler-bot","michalos",true); modelMap.put("gif",gif);
+        Gif gif = new Gif("compiler-bot","michalos",true);
+        modelMap.addAttribute("gif",gif);
         return "gif-details";
     }
 }
